@@ -1,0 +1,33 @@
+
+
+enable 
+configure terminal 
+lldp run 
+cdp run 
+no ip domain-lookup 
+username RouterOne password cisco
+line vty 0 15 
+login local 
+transport input telnet 
+exit 
+hostname admin
+
+int fa 0/1
+ ip address 192.168.91.1 255.255.255.0
+ no shutdown 
+ exit 
+
+
+int fa 0/0
+ ip address 192.168.91.2 255.255.255.0
+ no shutdown 
+ exit 
+
+
+router rip 
+network 192.168.91.0
+version 2 
+no auto-summary 
+exit 
+banner motd | 
+Hi|
